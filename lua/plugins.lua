@@ -147,9 +147,30 @@ function()
   }
 
   use({
-      "kylechui/nvim-surround",
-      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-      config = require 'plugins.nvim_surround'
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = require 'plugins.nvim_surround'
   })
+
+  -- autocomplete with plugins
+  use {
+    "hrsh7th/nvim-cmp",
+    config = require "plugins.cmp",
+  }
+
+  -- autocomplete with copilot
+  use {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = require 'plugins.copilot'
+  }
+
+  -- integration copilot with cmp
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = require 'plugins.copilot_cmp'
+  }
 end
 )
