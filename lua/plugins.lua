@@ -1,3 +1,10 @@
+-- TODO:
+-- folding
+-- autocomlete
+-- lsp
+-- navigation
+-- changing brackets
+
 return require("packer").startup(
 function()
   -- packer can manage itself
@@ -50,9 +57,11 @@ function()
     config = require "plugins.telescope",
     requires = {
       {"nvim-lua/popup.nvim"},
-      {"nvim-lua/plenary.nvim"}
+      {"nvim-lua/plenary.nvim"},
+      {"nvim-telescope/telescope-live-grep-args.nvim"}
     }
   }
+
   -- better sorter for telescope
   use {
     "nvim-telescope/telescope-fzf-native.nvim",
@@ -129,5 +138,18 @@ function()
 
   -- Fancy startup screen
   use "mhinz/vim-startify"
+
+  -- a set of configs for treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    config = require "plugins.treesitter",
+    run = ":TSUpdate"
+  }
+
+  use({
+      "kylechui/nvim-surround",
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = require 'plugins.nvim_surround'
+  })
 end
 )
