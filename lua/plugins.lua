@@ -172,5 +172,17 @@ function()
     after = { "copilot.lua" },
     config = require 'plugins.copilot_cmp'
   }
+
+  -- run rspecs from vim
+  use {
+    "thoughtbot/vim-rspec",
+    config = require 'plugins.vim_rspec'
+  }
+
+  -- run rspecs in tab
+  use {
+    "jgdavey/tslime.vim",
+    config = require 'plugins.tslime'
+  }
 end
 )
