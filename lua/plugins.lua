@@ -184,5 +184,11 @@ function()
     'embear/vim-localvimrc',
     config = require 'plugins.vim_localvimrc'
   }
+
+  -- linters
+  use {
+    'dense-analysis/ale',
+    config = require('plugins.ale')
+  }
 end
 )

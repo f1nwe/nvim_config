@@ -32,6 +32,6 @@ return function()
 
 
   vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-  vim.keymap.set("n", "<leader>g", telescope.extensions.live_grep_args.live_grep_args)
+  vim.keymap.set("n", "<leader>f", telescope.extensions.live_grep_args.live_grep_args)
   vim.keymap.set("n", "<leader>w", live_grep_args_shortcuts.grep_word_under_cursor)
 end
