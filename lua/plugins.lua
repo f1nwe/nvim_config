@@ -29,12 +29,6 @@ function()
     "kyazdani42/nvim-web-devicons"
   }
 
-  -- local vimrc
-  use {
-    'embear/vim-localvimrc',
-    config = require 'plugins.localvimrc'
-  }
-
   -- vim + tmux
   use {
     'christoomey/vim-tmux-navigator'
