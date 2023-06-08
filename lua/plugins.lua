@@ -184,5 +184,11 @@ function()
     "jgdavey/tslime.vim",
     config = require 'plugins.tslime'
   }
+
+  -- use local nvim config
+  use {
+    'embear/vim-localvimrc',
+    config = require 'plugins.vim_localvimrc'
+  }
 end
 )
