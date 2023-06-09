@@ -146,10 +146,18 @@ function()
     config = require 'plugins.nvim_surround'
   })
 
+  use {
+    "neovim/nvim-lspconfig",
+    config = require "plugins.lspconfig"
+  }
+
   -- autocomplete with plugins
   use {
     "hrsh7th/nvim-cmp",
     config = require "plugins.cmp",
+    requires = {
+      'hrsh7th/cmp-nvim-lsp'
+    }
   }
 
   -- autocomplete with copilot
