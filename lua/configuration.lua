@@ -21,7 +21,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- shows vertical bar
-vim.wo.colorcolumn = "120"
+vim.wo.colorcolumn = "100"
 
 -- highlight the cursor screen line
 -- highlight the cursor screen column

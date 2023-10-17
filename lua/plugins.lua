@@ -83,7 +83,7 @@ function()
 
   -- autoclose parentheses
   use {
-    '/windwp/nvim-autopairs',
+    'windwp/nvim-autopairs',
     config = require 'plugins.nvim_autopairs'
   }
 
@@ -108,11 +108,6 @@ function()
 
   use {
     "tpope/vim-fugitive"
-  }
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = require 'plugins.gitsigns'
   }
 
   use {
@@ -197,6 +192,25 @@ function()
   use {
     'dense-analysis/ale',
     config = require('plugins.ale')
+  }
+
+  use {
+    'slim-template/vim-slim',
+    config = require('plugins.vim_slim')
+  }
+
+  use {
+    'tpope/vim-rails'
+  }
+
+  use {
+    'kchmck/vim-coffee-script'
+  }
+
+
+  use {
+    'sindrets/diffview.nvim',
+    config = require('plugins.diffview')
   }
 end
 )

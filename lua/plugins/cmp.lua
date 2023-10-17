@@ -5,7 +5,7 @@ return function()
   cmp.setup({
     sources = {
       { name = "copilot", group_index = 2 },
-      { name = 'nvim_lsp', grouup_index = 2 }
+      -- { name = 'nvim_lsp', grouup_index = 2 }
     },
     mapping = {
       ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
