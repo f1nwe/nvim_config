@@ -11,9 +11,9 @@ g.ale_linters = {
   g.ale_sign_error = '☢'
   g.ale_sign_warning = '⚠'
   g.ale_sign_column_always = 1
-  -- g.ale_fixers = {
-  --   -- define project-specific fixers in lvimrc
-  -- }
+  g.ale_fixers = {
+    lua = {'lua-format'},
+  }
 
   vim.cmd('highlight ALEWarning ctermbg=88')
   vim.cmd('highlight ALEError ctermbg=88')

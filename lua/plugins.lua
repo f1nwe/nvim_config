@@ -59,7 +59,7 @@ function()
   -- better sorter for telescope
   use {
     "nvim-telescope/telescope-fzf-native.nvim",
-    run = "make",
+    run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     config = require "plugins.telescope-fzf-native"
   }
 
@@ -211,6 +211,13 @@ function()
   use {
     'sindrets/diffview.nvim',
     config = require('plugins.diffview')
+  }
+
+  -- open row in github
+  use {
+    'ruifm/gitlinker.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = require('plugins.gitlinker')
   }
 end
 )
