@@ -4,7 +4,6 @@ return require("packer").startup(function()
     "wbthomason/packer.nvim"
   }
 
-  -- Colorscheme: Tokyonight
   use {
     "folke/tokyonight.nvim",
     config = require "plugins.tokyonight"
@@ -37,9 +36,9 @@ return require("packer").startup(function()
     "nvim-telescope/telescope.nvim",
     config = require "plugins.telescope",
     requires = {
-      {"nvim-lua/popup.nvim"},
-      {"nvim-lua/plenary.nvim"},
-      {"nvim-telescope/telescope-live-grep-args.nvim"}
+      { "nvim-lua/popup.nvim" },
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope-live-grep-args.nvim" }
     }
   }
 
