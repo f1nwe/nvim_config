@@ -182,6 +182,13 @@ function()
     config = require 'plugins.tslime'
   }
 
+  -- run arduino logs in slime
+
+  use {
+    "jpalardy/vim-slime",
+    config = require 'plugins.vim_slime'
+  }
+
   -- use local nvim config
   use {
     'embear/vim-localvimrc',
@@ -218,6 +225,14 @@ function()
     'ruifm/gitlinker.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = require('plugins.gitlinker')
+  }
+
+  -- arduino
+  use {
+    'stevearc/vim-arduino',
+    lazy = false,
+    ft = 'arduino',
+    config = require('plugins.vim_arduino')
   }
 end
 )
