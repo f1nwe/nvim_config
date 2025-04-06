@@ -197,12 +197,6 @@ return require("packer").startup(function()
     config = require 'plugins.vim_localvimrc'
   }
 
-  -- ALE: Linting engine for many languages
-  use {
-    'dense-analysis/ale',
-    config = require('plugins.ale')
-  }
-
   -- Syntax for Slim templates
   use {
     'slim-template/vim-slim',
@@ -240,6 +234,7 @@ return require("packer").startup(function()
     config = require('plugins.vim_arduino')
   }
 
+  use { "nvim-tree/nvim-web-devicons" }
 
   -- Statusline plugin with minimal and modern look
   use {
@@ -250,8 +245,7 @@ return require("packer").startup(function()
   -- Minimal tabline (shows open buffers nicely)
   use {
     'romgrk/barbar.nvim',
-    config = require 'plugins.barbar',
-    requires = 'nvim-web-devicons'
+    config = require 'plugins.barbar'
   }
 
   -- Show a small popup with signature help when typing
