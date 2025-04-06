@@ -1,51 +1,43 @@
--- TODO:
--- folding
--- autocomlete
--- lsp
--- navigation
--- changing brackets
-
-return require("packer").startup(
-function()
-  -- packer can manage itself
+return require("packer").startup(function()
+  -- Packer manages itself
   use {
     "wbthomason/packer.nvim"
   }
 
-  -- theme
+  -- Colorscheme: Tokyonight
   use {
     "folke/tokyonight.nvim",
     config = require "plugins.tokyonight"
   }
 
-  -- Folder tree navigation
+  -- File explorer sidebar
   use {
     "nvim-tree/nvim-tree.lua",
     config = require "plugins.nvim-tree"
   }
 
-  -- Icons for nvim-tree
+  -- File icons for file explorer and UI
   use {
     "kyazdani42/nvim-web-devicons"
   }
 
-  -- vim + tmux
+  -- Seamless navigation between tmux and vim splits
   use {
     'christoomey/vim-tmux-navigator'
   }
 
-  -- easy resize of tmux and vim panes
+  -- Resize Vim and tmux splits using hotkeys
   use {
-    'RyanMillerC/better-vim-tmux-resizer',
+    'RyanMillerC/better-vim-tmux-resizer'
   }
 
-  -- decorate git changes
+  -- Git diff decorations in the gutter
   use {
     'lewis6991/gitsigns.nvim',
     config = require 'plugins.gitsigns'
   }
 
-  --  highly extendable fuzzy finder over lists
+  -- Fuzzy finder for files, buffers, help, etc.
   use {
     "nvim-telescope/telescope.nvim",
     config = require "plugins.telescope",
@@ -56,66 +48,67 @@ function()
     }
   }
 
-  -- better sorter for telescope
+  -- Native FZF sorter for telescope (faster fuzzy matching)
   use {
     "nvim-telescope/telescope-fzf-native.nvim",
     run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     config = require "plugins.telescope-fzf-native"
   }
 
-  -- highlight other uses of the current word under the cursor
+  -- Highlight same word under cursor
   use {
     "RRethy/vim-illuminate",
     config = require "plugins.illuminate"
   }
 
-  -- highlight color hashes
+  -- Highlight hex color codes inline
   use {
     'norcalli/nvim-colorizer.lua',
     config = require 'plugins.nvim-colorizer'
   }
 
-  -- jump between camelcased
+  -- CamelCase motion support (e.g. jump by camelCase parts)
   use {
     "bkad/CamelCaseMotion",
     config = require "plugins.camel_case_motion"
   }
 
-  -- autoclose parentheses
+  -- Autoclose brackets and quotes
   use {
     'windwp/nvim-autopairs',
     config = require 'plugins.nvim_autopairs'
   }
 
-  -- format code
+  -- Auto-format code with external formatters
   use {
     "vim-autoformat/vim-autoformat",
     config = require "plugins.autoformat"
   }
 
-  -- prints vertical lines at each indentation level
+  -- Vertical indentation guides
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = require "plugins.indent_blankline"
   }
 
-
-  -- language-agnostic comment/uncomment functionality
+  -- Easy toggle comments for any language
   use {
     "tomtom/tcomment_vim",
     config = require "plugins.tcomment"
   }
 
+  -- Git integration (status, commit, etc.)
   use {
     "tpope/vim-fugitive"
   }
 
+  -- Fast cursor movement with search hints
   use {
     'easymotion/vim-easymotion',
     config = require 'plugins.vim_easymotion'
   }
 
-  -- images viewer
+  -- View images in buffer (for markdown or code preview)
   use {
     "samodostal/image.nvim",
     requires = {
@@ -125,114 +118,130 @@ function()
     config = require "plugins.image"
   }
 
-  -- Fancy startup screen
+  -- Fancy splash screen
   use "mhinz/vim-startify"
 
-  -- a set of configs for treesitter
+  -- Treesitter-based highlighting and parsing
   use {
     "nvim-treesitter/nvim-treesitter",
     config = require "plugins.treesitter",
     run = ":TSUpdate"
   }
 
+  -- Surround text with brackets, quotes, etc.
   use({
     "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    tag = "*",
     config = require 'plugins.nvim_surround'
   })
 
+  -- Built-in LSP client configuration
   use {
     "neovim/nvim-lspconfig",
     config = require "plugins.lspconfig"
   }
 
-  -- autocomplete with plugins
+  -- Autocompletion engine
   use {
     "hrsh7th/nvim-cmp",
     config = require "plugins.cmp",
     requires = {
-      'hrsh7th/cmp-nvim-lsp'
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'zbirenbaum/copilot-cmp',
     }
   }
 
-  -- autocomplete with copilot
+  -- Copilot core plugin
   use {
     "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
     event = "InsertEnter",
-    config = require 'plugins.copilot'
+    config = require("plugins.copilot"),
+    requires = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      }
+    }
   }
 
-  -- integration copilot with cmp
+  -- Integration: Copilot with cmp
   use {
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua" },
     config = require 'plugins.copilot_cmp'
   }
 
-  -- run rspecs from vim
+  -- Run RSpec tests from Vim
   use {
     "thoughtbot/vim-rspec",
     config = require 'plugins.vim_rspec'
   }
 
-  -- run rspecs in tab
+  -- Send RSpec to tmux target
   use {
     "jgdavey/tslime.vim",
     config = require 'plugins.tslime'
   }
 
-  -- run arduino logs in slime
-
+  -- Send text from Vim to tmux (Arduino or other REPLs)
   use {
     "jpalardy/vim-slime",
     config = require 'plugins.vim_slime'
   }
 
-  -- use local nvim config
+  -- Support local .lvimrc for per-project config
   use {
     'embear/vim-localvimrc',
     config = require 'plugins.vim_localvimrc'
   }
 
-  -- linters
+  -- ALE: Linting engine for many languages
   use {
     'dense-analysis/ale',
     config = require('plugins.ale')
   }
 
+  -- Syntax for Slim templates
   use {
     'slim-template/vim-slim',
     config = require('plugins.vim_slim')
   }
 
+  -- Rails power tools
   use {
     'tpope/vim-rails'
   }
 
+  -- CoffeeScript syntax
   use {
     'kchmck/vim-coffee-script'
   }
 
-
+  -- View and manage Git diffs
   use {
     'sindrets/diffview.nvim',
     config = require('plugins.diffview')
   }
 
-  -- open row in github
+  -- Generate GitHub links for code rows
   use {
     'ruifm/gitlinker.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = require('plugins.gitlinker')
   }
 
-  -- arduino
+  -- Arduino development support
   use {
     'stevearc/vim-arduino',
     lazy = false,
     ft = 'arduino',
     config = require('plugins.vim_arduino')
   }
-end
-)
+end)

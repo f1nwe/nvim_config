@@ -96,3 +96,6 @@ vim.opt.softtabstop = 2 -- number of spaces to use when inserting a tab
 vim.api.nvim_set_keymap("v", "y", "y`]", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "p", "p`]", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "p", "p`]", { noremap = true, silent = true })
+
+-- set python host from asdf
+vim.g.python3_host_prog = vim.fn.expand("~/.asdf/shims/python3")
