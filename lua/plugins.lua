@@ -16,11 +16,6 @@ return require("packer").startup(function()
     config = require "plugins.nvim-tree"
   }
 
-  -- File icons for file explorer and UI
-  use {
-    "kyazdani42/nvim-web-devicons"
-  }
-
   -- Seamless navigation between tmux and vim splits
   use {
     'christoomey/vim-tmux-navigator'
@@ -243,5 +238,42 @@ return require("packer").startup(function()
     lazy = false,
     ft = 'arduino',
     config = require('plugins.vim_arduino')
+  }
+
+
+  -- Statusline plugin with minimal and modern look
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = require 'plugins.lualine'
+  }
+
+  -- Minimal tabline (shows open buffers nicely)
+  use {
+    'romgrk/barbar.nvim',
+    config = require 'plugins.barbar',
+    requires = 'nvim-web-devicons'
+  }
+
+  -- Show a small popup with signature help when typing
+  use {
+    'ray-x/lsp_signature.nvim',
+    config = require 'plugins.lsp_signature'
+  }
+
+  -- UI notifications with slick animations
+  use {
+    'rcarriga/nvim-notify',
+    config = require 'plugins.notify'
+  }
+
+  -- Minimal scroll bar
+  use {
+    'petertriho/nvim-scrollbar',
+    config = require 'plugins.scrollbar'
+  }
+
+  use {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = require("plugins.lsp_lines")
   }
 end)
