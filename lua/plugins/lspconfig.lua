@@ -3,23 +3,22 @@
 return function()
   local lspconfig = require("lspconfig")
 
-local on_attach = function(client, bufnr)
-  local map = function(lhs, rhs, desc)
-    vim.keymap.set("n", lhs, rhs, { buffer = bufnr, noremap = true, desc = desc })
-  end
+  local on_attach = function(client, bufnr)
+    local map = function(lhs, rhs, desc)
+      vim.keymap.set("n", lhs, rhs, { buffer = bufnr, noremap = true, desc = desc })
+    end
 
-  map("K", vim.lsp.buf.hover, "LSP Hover")
-  map("<Leader>rn", vim.lsp.buf.rename, "LSP Rename")
-  map("<Leader>ca", vim.lsp.buf.code_action, "LSP Code Action")
-  map("gd", function() vim.lsp.buf.definition() end, "LSP Go to Definition")
+    map("K", vim.lsp.buf.hover, "LSP Hover")
+    map("<Leader>rn", vim.lsp.buf.rename, "LSP Rename")
+    map("<Leader>ca", vim.lsp.buf.code_action, "LSP Code Action")
+    map("gd", function() vim.lsp.buf.definition() end, "LSP Go to Definition")
 
-  if client.server_capabilities.documentFormattingProvider then
-    print("clangd supports formatting!") -- для перевірки
-    map("<Leader>r", function()
-      vim.lsp.buf.format({ async = true })
-    end, "Format Buffer")
+    if client.server_capabilities.documentFormattingProvider then
+      map("<Leader>r", function()
+        vim.lsp.buf.format({ async = true })
+      end, "Format Buffer")
+    end
   end
-end
 
   lspconfig.clangd.setup({
     on_attach = on_attach, -- reuse your function
@@ -43,5 +42,12 @@ end
 
   lspconfig.pyright.setup({
     on_attach = on_attach,
+  })
+
+  lspconfig.clangd.setup({
+    on_attach = on_attach,
+    cmd = { "clangd", "--background-index", "--clang-tidy" },
+    filetypes = { "c", "cpp" },
+    root_dir = lspconfig.util.root_pattern("compile_commands.json", "Makefile", ".git"),
   })
 end

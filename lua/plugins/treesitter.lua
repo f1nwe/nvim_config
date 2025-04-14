@@ -14,7 +14,9 @@ return function()
       "html",
       "yaml",
       "heex",
-      "eex"
+      "eex",
+      "c",
+      "cpp"
     },
     highlight = {
       enable = true,
